@@ -10,7 +10,7 @@ const CardPoke = ({ id, name, img, url }) => {
 
     const [pokemon, setPokemon] = useState({});
 
-    const capitalize = (name) => name.charAt(0).toUpperCase() + name.slice(1);
+    const capitalize = (name) => name?.charAt(0).toUpperCase() + name?.slice(1);
 
     const onClick = () => {
         router.push(`/pokemon/${id}`)
@@ -18,9 +18,11 @@ const CardPoke = ({ id, name, img, url }) => {
 
 
     const api = async () => {
-        const { data } = await axios.get(url)
+       if (url) {
+           const { data } = await axios.get(url)
+           setPokemon(data)
+       }
 
-        setPokemon(data)
     }
 
     useEffect(() => {
@@ -44,17 +46,17 @@ const CardPoke = ({ id, name, img, url }) => {
                 </div>
             </div>
             <div className={style.textcontainer}>
-                <h3> #{id} {capitalize(name)}</h3>
+                <h3> #{id} { !name  ? '' : capitalize(name)}</h3>
                 {
-                    tipos == undefined ? '...Loading' : tipos.length == 2 ?
-                        <>
+                     tipos == undefined ? '...Loading' : tipos.length == 2 ? 
+                         <>
                             <div style={{ display: 'flex', justifyContent: 'space-around' }} >
 
                                 <TypePokemon tipo={tipos[0]} />
                                 {/* <div>
                                     {tipos[0]}
-                                </div> */}
-{/* 
+                                </div>
+
                                 <div>
                                     {tipos[1]}
                                 </div> */}
@@ -62,10 +64,10 @@ const CardPoke = ({ id, name, img, url }) => {
                             </div>
                         </>
                         :
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <TypePokemon tipo={tipos[0]} />
 
-                        </div>
+                         </div>
                         
                 }
             </div>

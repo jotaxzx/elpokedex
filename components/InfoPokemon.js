@@ -12,6 +12,7 @@ const InfoPokemon = ({ img, name, stats }) => {
             <div className={style.containerimg} >
                 <Image className="animate__animated animate__backInLeft" src={img} width={300} height={300} />
                 <h1 className="animate__animated animate__backInLeft" style={{ fontWeight: 'bold', color: 'white' }} > Hi, my name is {name} </h1>
+
             </div>
 
             <div className={style.containerinfo}>

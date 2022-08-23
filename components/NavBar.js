@@ -22,7 +22,7 @@ export const NavBar = () => {
 
         <div style={{ display: 'flex', justifyContent: 'space-between', minWidth: '300px' }} >
           <ActiveLink title="Home" href="/" />
-          {/* <ActiveLink title="Favorites" href="/favorites" /> */}
+          <ActiveLink title="Favorites" href="/favorites" />
           {/* <ActiveLink title="Contact" href="/contact" /> */}
         </div>
 
