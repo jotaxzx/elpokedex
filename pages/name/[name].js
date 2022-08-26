@@ -15,16 +15,11 @@ const PokemonPageByName = ({ pokemon }) => {
     const imagePokemon = pokemon.sprites.other?.dream_world.front_default;
     const stats = pokemon.stats
     const {id} = pokemon;
-    const pokeInfo = {
-        name,
-        imagePokemon,
-        id,
-        stats
-    }
+
     const [inFavorites, setInFavorites] = useState(localFavorites.existInFavorites(id));
 
     
-    const handleClick = (name) => {
+    const handleClick = () => {
         
      localFavorites.localStorageFavorite(id)
      setInFavorites(!inFavorites)
@@ -35,7 +30,7 @@ const PokemonPageByName = ({ pokemon }) => {
         // namePage={name}
         <Layout >
             <div className={style.container_button}>    
-                <button onClick={()=> handleClick(name)} className={style.button} >
+                <button onClick={ handleClick } className={style.button} >
                     {inFavorites ? 'in favorites' : 'save to favorites' }
                 </button>
             </div>

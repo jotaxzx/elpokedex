@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react'
+import { pokeApi } from '../api/pokeApi';
 import style from '../styles/Card.module.css'
 import TypePokemon from './TypePokemon';
 
-const CardPoke = ({ id, name, img, url }) => {
+const CardFavorite = ({ id, img }) => {
 
     const router = useRouter();
 
@@ -13,14 +14,14 @@ const CardPoke = ({ id, name, img, url }) => {
     const capitalize = (name) => name?.charAt(0).toUpperCase() + name?.slice(1);
 
     const onClick = () => {
-        // router.push(`/pokemon/${id}`)
-        router.push(`/name/${name}`)
+        router.push(`/name/${pokemon.name}`)
     }
 
 
     const api = async () => {
-       if (url) {
-           const { data } = await axios.get(url)
+       if (id) {
+           const { data } = await pokeApi.get(`/pokemon/${id}`)
+           console.log(data);
            setPokemon(data)
        }
 
@@ -30,8 +31,12 @@ const CardPoke = ({ id, name, img, url }) => {
         api()
     }, []);
 
+    // console.log(pokemon);
+
+    const name = pokemon?.name
     const type = pokemon?.types
 
+    
     const tipos = type?.map(e => e.type.name)
     // console.log(tipos)
     return (
@@ -76,7 +81,7 @@ const CardPoke = ({ id, name, img, url }) => {
     )
 }
 
-export default CardPoke;
+export default CardFavorite;
 
 
 

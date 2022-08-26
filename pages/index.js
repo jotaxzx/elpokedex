@@ -4,6 +4,8 @@ import { Layout } from '../components/Layout'
 
 export default function HomePage({ pokemons }) {
 
+  console.log(pokemons);
+
   return (
     <>
       <Layout namePage="Home Page" content="Home Page" >
@@ -30,7 +32,7 @@ export const getStaticProps = async (context) => {
     img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i + 1}.svg`
   }))
 
-  console.log(pokemons);
+
 
   return {
     props: {
